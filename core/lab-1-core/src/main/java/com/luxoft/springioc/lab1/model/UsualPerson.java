@@ -15,6 +15,9 @@ public class UsualPerson implements Person {
 
     private List<String> contacts;
 
+    public UsualPerson() {
+    }
+
     public UsualPerson(String name, Country country, int age) {
         this.name = name;
         this.country = country;
