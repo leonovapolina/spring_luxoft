@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-//import javax.annotation.PostConstruct;
-//import javax.annotation.PreDestroy;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Service("person")
 public class UsualPerson implements Person, InitializingBean, DisposableBean {
@@ -146,11 +146,13 @@ public class UsualPerson implements Person, InitializingBean, DisposableBean {
     }
 
     @Override
+    @PreDestroy
     public void destroy() throws Exception {
         createdPersons--;
     }
 
     @Override
+    @PostConstruct
     public void afterPropertiesSet() throws Exception {
         createdPersons++;
     }
