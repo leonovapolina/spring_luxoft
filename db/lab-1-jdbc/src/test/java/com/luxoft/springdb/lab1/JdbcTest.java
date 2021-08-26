@@ -24,13 +24,12 @@ public class JdbcTest{
 	private CountryDao countryDao;
 	
     private List<Country> expectedCountryList = new ArrayList<Country>();
-    private List<com.luxoft.springdb.lab1.model.Country> expectedCountryListStartsWithA = new ArrayList<Country>();
+    private List<Country> expectedCountryListStartsWithA = new ArrayList<Country>();
     private Country countryWithChangedName = new Country(1, "Russia", "RU");
 
     @Before
     public void setUp() throws Exception {
         initExpectedCountryLists();
-        countryDao.loadCountries();
     }
 
     
@@ -64,13 +63,11 @@ public class JdbcTest{
     }
 
     private void initExpectedCountryLists() {
-         for (int i = 0; i < CountryDao.COUNTRY_INIT_DATA.length; i++) {
-             String[] countryInitData = CountryDao.COUNTRY_INIT_DATA[i];
-             Country country = new Country(i, countryInitData[0], countryInitData[1]);
-             expectedCountryList.add(country);
-             if (country.getName().startsWith("A")) {
-                 expectedCountryListStartsWithA.add(country);
-             }
-         }
+        for (Country country : countryDao.getCountryList()) {
+            expectedCountryList.add(country);
+            if (country.getName().startsWith("A")) {
+                expectedCountryListStartsWithA.add(country);
+            }
+        }
      }
 }
