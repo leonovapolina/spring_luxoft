@@ -19,7 +19,7 @@ public class ValidationLoggingAspect extends RuntimeException {
     public void setAgeMethod() {
     }
 
-    @AfterThrowing(pointcut="setterMethod()", throwing="e")
+    @AfterThrowing(pointcut="setAgeMethod()", throwing="e")
     public void validationExceptionLogger(JoinPoint joinPoint, ValidationException e) {
         String methodName = joinPoint.getSignature().getName();
         Object[] methodArgs = joinPoint.getArgs();
